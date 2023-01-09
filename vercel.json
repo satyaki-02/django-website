@@ -7,10 +7,10 @@
             "config":{"maxLambdaSize":"15mb", "runtime":"python3.10.7"}
         },
         {
-            "src":"build_files.sh",
+            "src":"build.sh",
             "use":"@vercel/static-build",
             "config":{
-                "distDir":"static_build"
+                "distDir":"staticfiles_build"
             }
         }
     ],
@@ -21,7 +21,7 @@
         },
         {
             "src":"/(.*)/",
-            "dest":"poll/wsgi.py"
+            "dest":"photowebsite/wsgi.py"
         }
     ]
 }
