@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    
+    <!--Bootstrap css-->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    
+    
+    <title>Photo Gallery</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    
+    
+    <!--OWN CSS-->
+    <style>
+        .photo-label {
+        align-items: 'left';
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-weight: normal;
+        font-size: 20px;
+        color: white;
+        text-transform: uppercase;
+        position: absolute;
+        bottom: 5px;
+        left: 12px;
+    }
+    .category-thumbnail{
+        padding: 0;
+        object-fit: cover;
+    }
+    </style>
+</head>
+<body>
+    
+    <!----------------------------NAV BAR------------------------------->
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark  mynavbar m-l-5" style="margin:0; background-color: black ;">
+            <div class="container-fluid">
+            <a class="navbar-brand " href="">Satyaki</a> <!--Will Take to main profile-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Category
+                    </a>
+                    <ul class="dropdown-menu" style="background-color: rgb(251, 248, 248)">
+                    <li><a class="dropdown-item" href="{% url 'gallery' %}" >ALL</a></li>
+                    {% for category in categories %}
+                    <li><a class="dropdown-item" href="{% url 'gallery' %}?category={{ category.name }}" >{{ category.name }}</a></li>
+                    {% endfor %}
+                    
+                    </ul>                
+                </li>
+                
+                </ul>
+            </div>
+            </div>
+        </nav>
+    <!--body-->
+
+    <div class="container-fluid justify-content-left">
+        <div class="row" >
+        {% for photo in photos %}
+            <div class="col-xs-12 col-sm-4 col-md-3 container category-thumbnail my-2 ">
+                <div class="card text-bg-dark">
+                    <img src="{{ photo.image.url }}" class="card-img" alt="category:{{ category.name }}" style="width: auto; height: 200px;">
+                    <div class="card-img-overlay">
+                        <!-- <p class="photo-label " ><small>photo:{{ photo.name }}</small></p> -->
+                        <a class="btn btn-light btn-outline-dark btn-sm m-2 bottom-0 end-0 position-absolute" href="{% url 'photo' photo.id %}" style="">View</a>
+                    </div>
+                  </div>
+            </div>
+        {% empty %}
+        <h3>Coming Soon...</h3>
+        {% endfor %}   
+        </div>
+    </div>
+</body>
+</html>
+
+<!---->

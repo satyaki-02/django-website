@@ -1,0 +1,4 @@
+Improve the back button
+create dark background
+customize the rows and columns
+try to make category (eg-https://github.com/bsuire/photo-website)
