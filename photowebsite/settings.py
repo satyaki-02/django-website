@@ -123,16 +123,17 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = 'images/'
 
-import os
 
-STATICFILES_DIRS =os.path.join(BASE_DIR, 'static'),
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images'),
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
+STATICFILES_DIRS =[
+    BASE_DIR / 'static'
+]
+MEDIA_ROOT = BASE_DIR / 'static/images'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AWS_QUERYSTRING_AUTH = False
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
